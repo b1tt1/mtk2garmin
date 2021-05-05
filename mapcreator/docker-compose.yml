@@ -13,7 +13,7 @@ services:
       - mapstyle:/mapstyles
       - /opt/mtk2garmin-build/output:/output
     environment:
-      - JAVACMD_OPTIONS=-Xmx50G
+      - JAVACMD_OPTIONS=-Xmx15G
   mtk2garmin-converter:
     image: teemupel/mtk2garmin-converter
     volumes:
@@ -38,7 +38,7 @@ services:
     volumes:
       - additional-data:/additional-data
   mkgmap:
-    image: teemupel/mkgmap
+    image: localhost:5000/mkgmap
     build: ../mkgmap-converter
     volumes:
       - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
@@ -46,7 +46,7 @@ services:
       - /opt/mtk2garmin-build/output:/output
       - mapstyle:/mapstyles
   mapstyles:
-    image: teemupel/mtk2garmin-mapstyles
+    image: localhost:5000/mtk2garmin-mapstyles
     build: ../mapstyles
     volumes:
       - mapstyle:/mapstyles
@@ -54,17 +54,17 @@ services:
     image: wheatstalk/makensis
     volumes:
       - /opt/mtk2garmin-build/output:/output
-  site:
-    build: ../site
-    image: localhost:5000/mtk2garmin-site
-    env_file:
-      - aws-access.env
-    volumes:
-      - /opt/mtk2garmin-build/output:/output
-      - /opt/mtk2garmin-publish:/publish
-      - mapstyle:/mapstyles
+  #site:
+    #build: ../site
+    #image: localhost:5000/mtk2garmin-site
+    #env_file:
+      #- aws-access.env
+    #volumes:
+      #- /opt/mtk2garmin-build/output:/output
+      #- /opt/mtk2garmin-publish:/publish
+      #- mapstyle:/mapstyles
 volumes:
   additional-data:
   mapstyle:
   converted:
-  site:
+  #site:

@@ -15,4 +15,4 @@ ADD peruskartta_garmin.txt .
 ADD run_mkgmap.sh .
 
 RUN chmod +x run_mkgmap.sh
-RUN java -jar -Xmx30G mkgmap.jar --family-id=2501 peruskartta_garmin.txt && mv peruskartta_garmin.typ perus.typ
+RUN java -jar -Xmx14G mkgmap.jar --family-id=2501 peruskartta_garmin.txt && mv peruskartta_garmin.typ perus.typ
